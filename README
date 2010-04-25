@@ -1,0 +1,22 @@
+Some small code samples I've accrued along the way as I've been learning Python.
+
+anagram
+ generating anagrams
+
+benford
+ testing out Benford's law with random numbers
+
+coins
+ making change
+
+fibbonacci
+ fibonacci
+
+mcdonalds
+ If a manager at mcdonalds samples order transaction rates at random times, how far off will his samples be based on the time skew?
+
+partition
+ Partitioning text into heirarchical bounding boxes
+
+powerset
+ Generate a powerset
