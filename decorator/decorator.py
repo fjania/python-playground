@@ -11,21 +11,30 @@ def memoize(f):
 	return wrapped
 	
 
-@memoize
+def memo(f):
+	table = {}
+	def fmemo(*args):
+		if args not in table:
+			table[args] = f(*args)
+		return table[args]
+	fmemo.memo = table
+	return fmemo
+
+@memo
 def fibonacci_memoized(n):
   if n in (0, 1): return n
   return fibonacci_memoized(n - 1) + fibonacci_memoized(n - 2)
 
-fibonacci_memoized(100)
+print fibonacci_memoized(100)
 
 
-def dfwa(a1, a2):
-	def wrap(f):
-		print "< in wrap" , a1
-		f()
-		print "> out of wrap" , a2
-	return wrap
-
-@dfwa('one', 'two')
-def test_it():
-	print "in test_it"
+# def dfwa(a1, a2):
+# 	def wrap(f):
+# 		print "< in wrap" , a1
+# 		f()
+# 		print "> out of wrap" , a2
+# 	return wrap
+# 
+# @dfwa('one', 'two')
+# def test_it():
+# 	print "in test_it"
