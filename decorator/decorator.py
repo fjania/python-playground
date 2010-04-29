@@ -27,7 +27,7 @@ def fibonacci_memoized(n):
   if n in (0, 1): return n
   return fibonacci_memoized(n - 1) + fibonacci_memoized(n - 2)
 
-print "f(10):" , fibonacci_memoized(1)
+print "f(10):" , fibonacci_memoized(10)
 
 
 def dfwa(a1, a2):
