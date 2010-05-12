@@ -1,4 +1,4 @@
-wordlist = open('dict.txt').readlines()
+wordlist = open('../dictionaries/us-english.txt').readlines()
 
 def contains_word(dictword, testword):
 	testletters = list(testword)
