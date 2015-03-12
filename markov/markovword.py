@@ -4,9 +4,11 @@ import string
 
 past = 5
 
+allwords = []
 words = []
 with open('words-en.txt') as fp:
     for line in fp.readlines():
+        allwords.append(line.strip())
         if len(line.strip()) > (1 + past):
             words.append(line.strip())
 
@@ -54,7 +56,7 @@ def run_test(count):
     for i in range(count):
         w = generate_word()
         if not w is None:
-            is_word = w in words
+            is_word = w in allwords
             if is_word:
                 words_count +=1
                 print "[{}]".format(w),
