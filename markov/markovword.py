@@ -57,10 +57,10 @@ def run_test(count):
             is_word = w in words
             if is_word:
                 words_count +=1
+                print "[{}]".format(w),
             else:
                 non_words_count += 1
-            #print "{:<20s}{}".format(w, is_word)
-            print w,
+                print w,
 
     print
     print "{:<20s}{}".format("Words", words_count)
