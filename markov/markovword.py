@@ -2,7 +2,7 @@ from collections import defaultdict
 import random
 import string
 
-past = 5
+past = 4
 
 allwords = []
 words = []
@@ -49,23 +49,54 @@ def generate_word():
 
     return ''.join(generated_word)
 
-def run_test(count):
-    words_count = 0
-    non_words_count = 0
+real_words = []
+fake_words = []
 
+def run_test(count):
     for i in range(count):
         w = generate_word()
         if not w is None:
             is_word = w in allwords
             if is_word:
-                words_count +=1
-                print "[{}]".format(w),
+                #real_words.append("[{}]".format(w))
+                real_words.append("{}".format(w))
             else:
-                non_words_count += 1
-                print w,
+                fake_words.append(w)
 
+    print "After {} attempts to generate words ({} successful)".format(
+        count,
+        len(real_words)+len(fake_words)
+    )
+    print "{:<20s}{}".format("Words", len(real_words))
+    print "{:<20s}{}".format("Non-Words", len(fake_words))
+
+def show_word_board():
+    words_to_show = 36
+    real_words_to_show = int(words_to_show * (len(real_words) / 1000.0))
+    fake_words_to_show = words_to_show - real_words_to_show
+
+    random.shuffle(real_words)
+    random.shuffle(fake_words)
+    word_list_to_show = []
+    word_list_to_show.extend(real_words[0:real_words_to_show])
+    word_list_to_show.extend(fake_words[0:fake_words_to_show])
+
+    random.shuffle(word_list_to_show)
     print
-    print "{:<20s}{}".format("Words", words_count)
-    print "{:<20s}{}".format("Non-Words", non_words_count)
+    print "|--/ {} real words, {} fake words /----------------------------------------------|".format(
+        real_words_to_show,
+        fake_words_to_show
+    )
+    print "|                                                                               |"
+    for x in range(6):
+        print "| {:^12s} {:^12s} {:^12s} {:^12s} {:^12s} {:^12s} |".format(*word_list_to_show[x*6:x*6+6])
+
+    print "|                                                                               |"
+    print "|-------------------------------------------------------------------------------|"
 
 run_test(1000)
+show_word_board()
+show_word_board()
+show_word_board()
+show_word_board()
+show_word_board()
