@@ -6,6 +6,7 @@ from nltk.corpus import wordnet as wn
 def is_ascii(s):
     return all(ord(c) < 128 for c in s)
 
+disallowed_lexnames = ('noun.person', 'noun.location')
 words = []
 with open('../dictionaries/word_frequencies.txt') as fp:
     for w in fp.readlines():
@@ -22,13 +23,13 @@ for w in words:
     ss = wn.synsets(word)
     if (len(ss) > 0):
         s = wn.synset(wn.synsets(word)[0].name())
-        output = {
-            "w": word,
-            "f": freq,
-            "d": s.definition(),
-            "p": s.pos(),
-        }
-        output_words.append(output)
+        if not s.lexname() in disallowed_lexnames:
+            output = {
+                "w": word,
+                "d": s.definition(),
+                "p": s.pos(),
+            }
+            output_words.append(output)
 
 total = len(output_words)
 for i, ow in enumerate(output_words):
