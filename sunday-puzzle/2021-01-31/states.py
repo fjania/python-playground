@@ -1,4 +1,3 @@
-import pprint
 import re
 import string
 from itertools import combinations
@@ -93,7 +92,6 @@ def find_all_legal_words(states_to_visit):
     number_of_possible_words = 0
 
     compute_all_possible_trips(all_possible_trips, states_to_visit)
-
     compute_all_possible_words(all_possible_words, states_to_visit)
     number_of_possible_words = sum([len(x) for x in all_possible_words.values()])
 
@@ -115,7 +113,6 @@ def find_all_legal_words(states_to_visit):
     word_keys = set(all_possible_words.keys())
 
     generatable_keys = trip_keys.intersection(word_keys)
-    #pprint.pprint(generatable_keys)
 
     for key in generatable_keys:
         print("Travel {} to spell: {}".format(
